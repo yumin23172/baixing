@@ -1,0 +1,74 @@
+import base64
+
+import requests
+# from util.time_13bit import time_13bit
+import json
+import os
+import time
+import re
+from lxml import etree
+import execjs
+
+
+class Soufang_Cs:
+    def __init__(self):
+        self.n = 5
+
+
+    def put(self, ):
+        cookie = 'uniqueName=904fef156334c3a26e3f72e2a199d3dd; UM_distinctid=165833588ca580-09fc49592708fd-47e1039-1fa400-165833588cb78c; www_sofang_session=eyJpdiI6IkFNUlJDTEljUStIbHBDUkwxcWFERVE9PSIsInZhbHVlIjoiZm5mYWphSjhzczFmVDNxdzBRSjlzUWtsQlhHeFpJMDJcL0xYQzY5K1RpWVRFMHh4TlRKVzlCYUE5d204ODB3WUVMTHNhdDFqSjF6eEluQXBYVnFXV1wvZz09IiwibWFjIjoiNzg5YjVjMGM0YjFhMDAzODc1ZjBmYjI0NjNiNGQ0MWYwYjliZGYwMjcyNzRkMTgxMDA0NjRmYjhlMjEwZWNmYSJ9; cityid=eyJpdiI6ImlndkM3cjNBYWNBMG9ZRW1INEJcL01nPT0iLCJ2YWx1ZSI6ImExR2w5MytPY0djaVk0ZWRZNWgyNVE9PSIsIm1hYyI6IjQzYjk3ZjEyYTI3NDZlZTQ3NTE1YTVhZmUwZDk4YzI3MWJhODJjMmZmMmQ0OGM4NGQ1ZjE1ZGM4YTU4MTdkZWQifQ%3D%3D; city=eyJpdiI6IjBZbGxrcnduVE5ZSUd2K0lWcnlmZGc9PSIsInZhbHVlIjoiRmdQbm9SUENtbnVFUm5uZXd2NHA1aCtuXC9iaEsyZjR3ZmJKSzBrU2JzOVlSWmc4RE5kR2xhcko1VTZTemVidTJFTlJNdzlqa21mV0Y2bnJGb3paaU80OGZBXC91QU8zaWpOQzJDeVM2NG9jWEVPdU5vdDJOZlU0cHN1UmZTdWVtUDBZVjlvVlc1XC9BcEFBTENMRHlQc1gzbjFLNGFMWHVHMDdzUnMzZDlIOGE3VUU2XC9LNVVzWVE2Q3ZqdkRFamsyZk1lRjZOWkhyenVXdW9rU0c0eXlLdzdFbmpXSVBJd2JCZUVNZCtia3U5b1QzTzg1dlNMVW1WYmxsdXU5N3A5NFF1UzNXY1doWUJIWlZwdE9CYkN1Sm90RVkxUk5wdlZ5MkhYR044ZjBkRkFnPSIsIm1hYyI6ImUwYTY4ZmM2OTQ4M2E0OWE4ZDQ3NDE0YjdiZmNhZDNkZGUyMDkyNWEyZTY4NDU1YjUxMmE2ZmZjNWIwOTQ5MTgifQ%3D%3D; citypy=eyJpdiI6InduN0hwWFRMT1IrVHJlaWIrRjhkTnc9PSIsInZhbHVlIjoiZG5TZG1tT1ZwRDB6ekY5OUFQYXFZQT09IiwibWFjIjoiNTgyMjQyYThmMzUyYTk2ZTEzOGMyNTI0ODNmMmU5ZTczNjRkY2JiN2I2ZTA4N2M2MDk1YWFkNmFlYWM5MjBmNSJ9; agent_sofang_session=3542bdeb87a3f64314fb5155643006cf800ca41c; XSRF-TOKEN=eyJpdiI6IldaVWpVUGVMK2xYbHZFQzZRZm4zVnc9PSIsInZhbHVlIjoiMVdhZE9FdHlRd05JclpUd1BvZElFOXNcL2Q5cmV0a1VQRkNPWTVFZ1AxTHRiZHZ2bEw0UGVmdEsrcUpnTXV3dlRqeXR5cmNCWFwvekhRTFgrekZvZXN1QT09IiwibWFjIjoiOGE4ZGE2NWQxZmRlZGIxZjViMTEzMWI2NTc0ZTU0ZjRmMzA3MWVkYWUzZWU4MWU3NGYxNzc3OTVjYjZlYTU2OSJ9'
+        headers_1 = {
+            'host': 'agent.sofang.com',
+            'Referer': 'http://agent.sofang.com/oldrent/house',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+            'Cookie': cookie,
+
+        }
+        data = {
+            '_token': 'WD0gdYV2MoU0SYDX8kjkLm0xlqvPmOCc1Ur8jpUZ',  # 在house?rentType=1里面
+            'communityId': '306030',
+            'houseType1': '3',
+            'longitude': '121.440549',
+            'latitude': '31.259237',
+            'rentType': '1',
+            'provinceId': ' 3',
+            'cityId': '332',
+            'cityareaId': '2985',
+            'businessAreaId': '4705',
+            # 'provinceId': '上海',
+            # 'cityId': '上海',
+            # 'cityareaId': '普陀',
+            # 'businessAreaId: ':'甘泉宜川',
+            'name': '月亮湾浦发广场',
+            'address': '普陀中山北路1655弄10支弄',
+            # 'room[]': item["室"],
+            # 'room[]': item["厅"],
+            # 'room[]': item["卫"],
+            # 'room[]': item["厨"],
+            'fitment': '1',
+            'roomStr': '2_2_1_1',
+            "price": '3456',
+            'priceUnit': '1',
+            'paymentType': '1',
+            "area": '123',
+            "currentFloor": '2',
+            "totalFloor": '23',
+            'houseType2': '301',
+            'faceTo': '1',
+            "title": "飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘飘",
+            'describe': '电饭锅猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥猴哥和',
+            'indoor': '[{"img":"/house/rent/2018_09/14/142423_1536906263_RS8P.jpg","note":"","type":"10"}]',
+            # 'titleimg': '[{"img":"/house/rent/2018_09/14/142429_1536906269_GPF3.jpg","type":"9","note":"","tag":"2"}]',
+            "linkman": '发发发发发发',
+            "linkmobile": '15629185662'
+        }
+        print(data)
+        print("*" * 80)
+        res = requests.post('http://agent.sofang.com/submitrent',headers=headers_1, data=data).content.decode()
+        return res
+
+
+
+if __name__ == '__main__':
+    soufang = Soufang_Cs()
+    soufang.put()

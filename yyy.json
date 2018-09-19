@@ -1,0 +1,467 @@
+{
+  "config": {
+    "metas": [
+      {
+        "name": "posterType",
+        "controlType": "Radio",
+        "displayName": "身份",
+        "values": "个人,经纪人",
+        "required": 1
+      },
+      {
+        "type": "Input",
+        "required": "1",
+        "controlType": "Input",
+        "maxlength": "15",
+        "name": "小区名",
+        "size": 5,
+        "qualityscore": 5,
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "level": "area2,area3",
+        "controlType": "TreeSelect",
+        "displayName": "地区",
+        "name": "地区",
+        "remember": "1",
+        "required": "1",
+        "tips": "填写小区名或详细地址",
+        "group": "所在地",
+        "id": "context.city.objectId",
+        "level1": "imports.topAreas",
+        "level2": "imports.areas",
+        "qualityscore": 5
+      },
+      {
+        "type": "TagInput",
+        "group": "所在地",
+        "controlType": "TagInput",
+        "maxlength": 50,
+        "displayname": "所在地",
+        "name": "具体地点",
+        "pattern": "^(?!.*[0-9-_]{10,}).*([\\u4E00-\\u9FA3]+)",
+        "error": "请正确填写"
+      },
+      {
+        "name": "室",
+        "controlType": "Input",
+        "unit": "室",
+        "size": 1,
+        "numeric": 1,
+        "maxlength": 5,
+        "required": 1,
+        "pattern": "^[1-9][0-9]{0,3}$",
+        "error": "户型必须为整数，居室不能是0",
+        "displayName": "户型",
+        "group": "户型",
+        "qualityscore": 5,
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "name": "厅",
+        "controlType": "Input",
+        "unit": "厅",
+        "size": 1,
+        "numeric": 1,
+        "maxlength": 5,
+        "required": 1,
+        "pattern": "^([1-9][0-9]{0,3}|0)$",
+        "error": "户型必须为整数，请输入数字",
+        "displayName": "户型",
+        "group": "户型",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "name": "卫",
+        "controlType": "Input",
+        "unit": "卫",
+        "size": 1,
+        "numeric": 1,
+        "maxlength": 5,
+        "required": 1,
+        "pattern": "^([1-9][0-9]{0,3}|0)$",
+        "error": "卫生间数量必须为整数，请输入数字",
+        "displayName": "户型",
+        "group": "户型",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "unit": "平米",
+        "type": "Input",
+        "gap": "10",
+        "controlType": "GapValueInput",
+        "maxlength": "8",
+        "size": 1,
+        "step": "0.01",
+        "numeric": "1",
+        "name": "面积",
+        "pattern": "^([1-9][0-9]{0,4}(\\.\\d{1,2})?|0\\.\\d{1,2})$",
+        "error": "面积只能为数字，允许两位小数",
+        "displayName": "户型",
+        "group": "户型",
+        "qualityscore": 5,
+        "required": 1
+      },
+      {
+        "unit": "层",
+        "type": "Input",
+        "gap": "2",
+        "controlType": "GapValueInput",
+        "maxlength": "10",
+        "size": 1,
+        "numeric": "5",
+        "tips": "房屋所在楼层，如：3楼",
+        "name": "楼层",
+        "prefix": "第",
+        "group": "楼层",
+        "required": 1
+      },
+      {
+        "unit": "层",
+        "type": "Input",
+        "gap": "2",
+        "controlType": "GapValueInput",
+        "maxlength": "8",
+        "size": 1,
+        "numeric": "5",
+        "tips": "总楼层，如：18层",
+        "name": "总楼层",
+        "prefix": "/共",
+        "pattern": "^[1-9][0-9]{0,3}$",
+        "error": "总楼层必须是数字，不能是0或负数",
+        "group": "楼层",
+        "qualityscore": 5,
+        "required": 1
+      },
+      {
+        "values": "低,中,高",
+        "type": "Select",
+        "controlType": "Hidden",
+        "displayName": "楼层概况",
+        "name": "楼层概况",
+        "size": 1,
+        "group": "楼层",
+        "qualityscore": 5
+      },
+      {
+        "values": "东,西,南,北,东西,南北,东南,西北,东北,西南",
+        "type": "Select",
+        "controlType": "Select",
+        "displayName": "房屋情况",
+        "name": "房间朝向",
+        "defaultDisplayName": "1",
+        "placeholder": "请选择房间朝向",
+        "size": 2,
+        "group": "房屋情况",
+        "qualityscore": 5,
+        "required": 1
+      },
+      {
+        "values": "毛坯房,简单装修,中等装修,精装修,豪华装修",
+        "type": "Select",
+        "controlType": "Select",
+        "name": "装修情况",
+        "displayName": "房屋情况",
+        "defaultDisplayName": "1",
+        "placeholder": "请选择装修情况",
+        "size": 2,
+        "group": "房屋情况",
+        "qualityscore": 5,
+        "required": 1
+      },
+      {
+        "name": "房屋类型",
+        "controlType": "Select",
+        "values": "公寓,普通住宅,别墅,平房,酒店公寓,商住两用,其他",
+        "size": 2,
+        "displayName": "房屋情况",
+        "defaultDisplayName": "1",
+        "placeholder": "请选择房屋类型",
+        "group": "房屋情况",
+        "required": 1
+      },
+      {
+        "unit": "年",
+        "type": "Input",
+        "gap": "10",
+        "controlType": "GapValueInput",
+        "maxlength": "8",
+        "size": 2,
+        "numeric": "1",
+        "name": "建筑年代",
+        "tips": "请填写4位数，例如2000",
+        "minlength": 4,
+        "qualityscore": 10
+      },
+      {
+        "name": "是否满二",
+        "controlType": "Radio",
+        "values": "1,0",
+        "displayValues": "是,否",
+        "required": 1
+      },
+      {
+        "name": "唯一住房",
+        "controlType": "Radio",
+        "values": "1,0",
+        "displayValues": "是,否",
+        "required": 1
+      },
+      {
+        "unit": "万元",
+        "type": "Input",
+        "gap": "10",
+        "required": "1",
+        "controlType": "GapValueInput",
+        "maxlength": "8",
+        "size": 2,
+        "tips": "请输入大于0的数字",
+        "name": "价格",
+        "pattern": "^\\s*((([1-9][0-9]{0,4})([.][0-9]{1})?|面议([\\-_~—]{1,2}([1-9][0-9]{0,4})([.][0-9]{1})?|面议)?)|面议)?\\s*$",
+        "displayName": "总价",
+        "error": "租金只能为数字，允许两位小数",
+        "qualityscore": 10
+      },
+      {
+        "type": "Input",
+        "required": "1",
+        "controlType": "Input",
+        "maxlength": "25",
+        "size": "60",
+        "displayName": "标题",
+        "placeholder": "请勿填写任何联系方式",
+        "tips": "标题字数为8-25个字，不允许填写电话、QQ、微信、邮箱等联系方式或特殊符号",
+        "name": "title",
+        "autofill": "{地铁房信息:__}{小区名:__}{房屋类型: __}{装修情况: __}",
+        "minlength": 8,
+        "qualityscore": 10,
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "type": "Textarea",
+        "controlType": "Textarea",
+        "size": "5",
+        "displayName": "描述",
+        "name": "content",
+        "maxlength": 5000,
+        "autofill": "{小区名:__}{地区:小区地处__}{具体地点:__，}{地铁站信息:__，}{室:__室}{厅:__厅}{卫:__卫}{面积:面积为__平米，}{总楼层:本楼层共__层，}{楼层:本房间处于__层，}{房间朝向:房屋整体朝向朝__，}{装修情况:__，}{价格:挂牌价为__万元，}{首付:首付__万元}",
+        "qualityscore": 10,
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "view": "bigImage",
+        "controlType": "Image",
+        "displayName": "上传照片",
+        "name": "images",
+        "param": {
+          "imageConfig": "imports.imageConfig",
+          "isLogin": "imports.isLogin"
+        },
+        "checker": "/autocomplete/contactchecker/detect",
+        "synthesis": "{\"checked\":false}"
+      },
+      {
+        "type": "VideoUploader",
+        "controlType": "VideoUploader",
+        "name": "shortVideo",
+        "displayName": "短视频"
+      },
+      {
+        "controlType": "Input",
+        "name": "video",
+        "size": "60",
+        "placeholder": "添加相关视频，目前只支持优酷视频",
+        "displayName": "视频链接",
+        "maxlength": "300",
+        "error": "请填写优酷视频地址",
+        "pattern": "^(http:\\/\\/|https:\\/\\/)v\\.youku\\.com\\/v_show\\/id_(X[0-9A-Za-z=]{12,})\\.html\\S*$",
+        "after": "<small>&nbsp;（<a href=\"http://www.baixing.com/help/feed?id=fd53223#fd53223\" target=\"_blank\">玩转视频发布</a> ）</small>",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "hideValuedInput": "1",
+        "type": "Input",
+        "required": "1",
+        "controlType": "Input",
+        "maxlength": "30",
+        "displayName": "联系电话",
+        "name": "contact",
+        "pattern": "^(\\d{11}|(\\d{3,4}-)?(\\d{7,8})(-\\d{1,4})?|(400)-\\d{3}-\\d{4}|400\\d{7}\\,\\d{0,6})$",
+        "error": "请填写有效的联系方式(例:138********、400-***-**** 或 61504767-8879)",
+        "size": 6,
+        "qualityscore": 10
+      },
+      {
+        "type": "Input",
+        "remember": "true",
+        "controlType": "Input",
+        "maxlength": "32",
+        "size": "6",
+        "tips": "保护隐私，在线沟通",
+        "name": "微信号"
+      },
+      {
+        "name": "token",
+        "controlType": "Hidden",
+        "value": "2e4c953576ea6f3fbc15a432fdb282e9"
+      },
+      {
+        "name": "8cb44b44cba8fde",
+        "type": "hidden",
+        "value": "adf0ed5d821535954559",
+        "required": 1,
+        "controlType": "Hidden"
+      }
+    ],
+    "forms": {
+      "tabs": {
+        "input": []
+      },
+      "form": [
+        {
+          "id": "form",
+          "children": [
+            {
+              "tagName": "input",
+              "name": "posterType"
+            },
+            {
+              "tagName": "input",
+              "name": "小区名"
+            },
+            {
+              "tagName": "group",
+              "label": "地区",
+              "children": [
+                {
+                  "tagName": "input",
+                  "name": "地区"
+                },
+                {
+                  "tagName": "input",
+                  "name": "具体地点"
+                }
+              ]
+            },
+            {
+              "tagName": "group",
+              "label": "室",
+              "children": [
+                {
+                  "tagName": "input",
+                  "name": "室"
+                },
+                {
+                  "tagName": "input",
+                  "name": "厅"
+                },
+                {
+                  "tagName": "input",
+                  "name": "卫"
+                },
+                {
+                  "tagName": "input",
+                  "name": "面积"
+                }
+              ]
+            },
+            {
+              "tagName": "group",
+              "label": "楼层",
+              "children": [
+                {
+                  "tagName": "input",
+                  "name": "楼层"
+                },
+                {
+                  "tagName": "input",
+                  "name": "总楼层"
+                },
+                {
+                  "tagName": "input",
+                  "name": "楼层概况"
+                }
+              ]
+            },
+            {
+              "tagName": "group",
+              "label": "房间朝向",
+              "children": [
+                {
+                  "tagName": "input",
+                  "name": "房间朝向"
+                },
+                {
+                  "tagName": "input",
+                  "name": "装修情况"
+                },
+                {
+                  "tagName": "input",
+                  "name": "房屋类型"
+                }
+              ]
+            },
+            {
+              "tagName": "input",
+              "name": "建筑年代"
+            },
+            {
+              "tagName": "input",
+              "name": "是否满二"
+            },
+            {
+              "tagName": "input",
+              "name": "唯一住房"
+            },
+            {
+              "tagName": "input",
+              "name": "价格"
+            },
+            {
+              "tagName": "input",
+              "name": "title"
+            },
+            {
+              "tagName": "input",
+              "name": "content"
+            },
+            {
+              "tagName": "input",
+              "name": "images"
+            },
+            {
+              "tagName": "input",
+              "name": "shortVideo"
+            },
+            {
+              "tagName": "input",
+              "name": "video"
+            },
+            {
+              "tagName": "input",
+              "name": "contact"
+            },
+            {
+              "tagName": "input",
+              "name": "微信号"
+            },
+            {
+              "tagName": "skip",
+              "name": "token"
+            },
+            {
+              "tagName": "skip",
+              "name": "8cb44b44cba8fde"
+            },
+            {
+              "tagName": "hidden",
+              "label": "补充信息",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "values": "{\"地区\":[\"m7155\",\"m3074\"],\"具体地点\":\"发展大道395-399号\",\"contact\":\"15629185662\",\"posterType\":\"个人\"}"
+}

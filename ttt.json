@@ -1,0 +1,266 @@
+{
+  "config": {
+    "metas": [
+      {
+        "type": "Input",
+        "required": "1",
+        "controlType": "Input",
+        "maxlength": "25",
+        "size": "60",
+        "displayName": "标题",
+        "placeholder": "请勿填写任何联系方式",
+        "tips": "不允许填写电话、QQ、微信、邮箱等联系方式",
+        "name": "title",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "dataType": "duanzutype",
+        "type": "TagSelect",
+        "id": "m177632",
+        "controlType": "TagSelect",
+        "name": "分类",
+        "optgroups": {
+          "__anonymous__": [
+            {
+              "label": "宾馆酒店",
+              "value": "m177634"
+            },
+            {
+              "label": "高档公寓",
+              "value": "m177633"
+            },
+            {
+              "label": "家庭旅馆",
+              "value": "m177635"
+            },
+            {
+              "label": "其他",
+              "value": "m177636"
+            }
+          ]
+        }
+      },
+      {
+        "values": "整套,单间,床位",
+        "type": "Radio",
+        "controlType": "Radio",
+        "displayName": "出租形式",
+        "name": "租房类型"
+      },
+      {
+        "unit": "元",
+        "type": "Input",
+        "gap": "10",
+        "required": "1",
+        "controlType": "GapValueInput",
+        "maxlength": "10",
+        "size": "5",
+        "displayName": "租金",
+        "tips": "请输入大于0的数字",
+        "name": "价格",
+        "pattern": "^\\s*(((([1-9][0-9]*))(\\.\\d{1,2})?|面议([\\-_~—]{1,2}(([1-9][0-9]*))(\\.\\d{1,2})?|面议)?)|面议)?\\s*$"
+      },
+      {
+        "type": "Textarea",
+        "controlType": "Textarea",
+        "size": "5",
+        "displayName": "描述",
+        "name": "content",
+        "maxlength": 5000,
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "view": "bigImage",
+        "controlType": "Image",
+        "displayName": "上传照片",
+        "name": "images",
+        "param": {
+          "imageConfig": "imports.imageConfig",
+          "isLogin": "imports.isLogin"
+        },
+        "checker": "/autocomplete/contactchecker/detect",
+        "synthesis": "{\"checked\":false}"
+      },
+      {
+        "type": "VideoUploader",
+        "controlType": "VideoUploader",
+        "name": "shortVideo",
+        "displayName": "短视频"
+      },
+      {
+        "level": "area2,area3",
+        "controlType": "TreeSelect",
+        "displayName": "地区",
+        "name": "地区",
+        "required": "1",
+        "group": "所在地",
+        "id": "context.city.objectId",
+        "level1": "imports.topAreas",
+        "level2": "imports.areas"
+      },
+      {
+        "type": "Input",
+        "group": "所在地",
+        "controlType": "Input",
+        "maxlength": 50,
+        "displayName": "所在地",
+        "name": "具体地点",
+        "pattern": "^(?!.*[0-9-_]{10,}).*([\\u4E00-\\u9FA3]+)",
+        "error": "请正确填写所在地",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "type": "Input",
+        "remember": "true",
+        "controlType": "Input",
+        "maxlength": "32",
+        "size": "6",
+        "tips": "保护隐私，在线沟通",
+        "name": "微信号"
+      },
+      {
+        "type": "Input",
+        "remember": "true",
+        "controlType": "Input",
+        "maxlength": "14",
+        "size": "6",
+        "numeric": "1",
+        "tips": "保护隐私，在线沟通",
+        "name": "QQ号"
+      },
+      {
+        "hideValuedInput": "1",
+        "type": "Input",
+        "required": "1",
+        "controlType": "Input",
+        "maxlength": "30",
+        "size": "5",
+        "displayName": "联系方式",
+        "name": "contact",
+        "pattern": "^(\\d{11}|(\\d{3,4}-)?(\\d{7,8})(-\\d{1,4})?|(400)-\\d{3}-\\d{4}|400\\d{7}\\,\\d{0,6})$",
+        "error": "请填写有效的联系方式(例:138********、400-***-**** 或 61504767-8879)"
+      },
+      {
+        "name": "allowChatOnly",
+        "controlType": "Radio",
+        "displayName": "联系方式",
+        "values": "0,1",
+        "displayValues": "私信+电话,私信",
+        "defaultValue": "0",
+        "skipScore": "1"
+      },
+      {
+        "controlType": "Input",
+        "name": "video",
+        "size": "60",
+        "placeholder": "添加相关视频，目前只支持优酷视频",
+        "displayName": "视频链接",
+        "maxlength": "300",
+        "error": "请填写优酷视频地址",
+        "pattern": "^(http:\\/\\/|https:\\/\\/)v\\.youku\\.com\\/v_show\\/id_(X[0-9A-Za-z=]{12,})\\.html\\S*$",
+        "after": "<small>&nbsp;（<a href=\"http://www.baixing.com/help/feed?id=fd53223#fd53223\" target=\"_blank\">玩转视频发布</a> ）</small>",
+        "checker": "/autocomplete/contactchecker/recognize"
+      },
+      {
+        "name": "token",
+        "controlType": "Hidden",
+        "value": "1f9333a1eb97e15e11eb1ec51e3daa1a"
+      },
+      {
+        "name": "8cb44b44cba8fde",
+        "type": "hidden",
+        "value": "332305a01b1536205738",
+        "required": 1,
+        "controlType": "Hidden"
+      }
+    ],
+    "forms": {
+      "tabs": {
+        "input": []
+      },
+      "form": [
+        {
+          "id": "form",
+          "children": [
+            {
+              "tagName": "input",
+              "name": "title"
+            },
+            {
+              "tagName": "input",
+              "name": "分类"
+            },
+            {
+              "tagName": "input",
+              "name": "租房类型"
+            },
+            {
+              "tagName": "input",
+              "name": "价格"
+            },
+            {
+              "tagName": "input",
+              "name": "content"
+            },
+            {
+              "tagName": "input",
+              "name": "images"
+            },
+            {
+              "tagName": "input",
+              "name": "shortVideo"
+            },
+            {
+              "tagName": "group",
+              "label": "地区",
+              "children": [
+                {
+                  "tagName": "input",
+                  "name": "地区"
+                },
+                {
+                  "tagName": "input",
+                  "name": "具体地点"
+                }
+              ]
+            },
+            {
+              "tagName": "input",
+              "name": "微信号"
+            },
+            {
+              "tagName": "input",
+              "name": "QQ号"
+            },
+            {
+              "tagName": "input",
+              "name": "contact"
+            },
+            {
+              "tagName": "input",
+              "name": "allowChatOnly"
+            },
+            {
+              "tagName": "input",
+              "name": "video"
+            },
+            {
+              "tagName": "skip",
+              "name": "token"
+            },
+            {
+              "tagName": "skip",
+              "name": "8cb44b44cba8fde"
+            },
+            {
+              "tagName": "hidden",
+              "label": "补充信息",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "values": "{\"地区\":[\"m7151\",\"m3025\"],\"具体地点\":\"天潼路619号\",\"contact\":\"15629185662\"}"
+}
